@@ -21,9 +21,7 @@ class ButtonBlock extends StatelessWidget {
         return ElevatedButton(
           onPressed: ()
         {
-          if (doAction)
-          {
-            if (cubit.nationalIdISCorrect() != 'the national id is correct' ||
+             if (cubit.nationalIdISCorrect() != 'the national id is correct' ||
                 cubit.nameValidate() != 'name field is correct' ||
             cubit.getGovernement()==null)
             {
@@ -35,31 +33,33 @@ class ButtonBlock extends StatelessWidget {
                   btnOkOnPress: () {}
               ).show();
             }
-            else
-            {
-              AwesomeDialog(
-                  context: context,
-                  dialogType: DialogType.info,
-                  title: 'National ID Information',
-                  desc:
-                  'Your Name is ${cubit.nameController.text}\n'
-                      'your birth date ${cubit.getBirthDate()}\n'
-                      '${cubit.getGovernement()}\n'
-                      'your gender is ${cubit.getGender()}',
-                  alignment: Alignment.center,
-                  btnOkOnPress: () {}
-              ).show();
-            }
-        }
-          else
-            {
-              Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => IdCardScreen(),
-                  )
-              );
+             else {
+               if (doAction) {
+                 AwesomeDialog(
+                     context: context,
+                     dialogType: DialogType.info,
+                     title: 'National ID Information',
+                     desc:
+                     'Your Name is ${cubit.nameController.text}\n'
+                         'your birth date ${cubit.getBirthDate()}\n'
+                         '${cubit.getGovernement()}\n'
+                         'your gender is ${cubit.getGender()}',
+                     alignment: Alignment.center,
+                     btnOkOnPress: () {}
+                 ).show();
+               }
+               else
+                 {
+                 Navigator.of(context).push(
+                     MaterialPageRoute(
+                       builder: (context) => const IdCardScreen(),
+                     )
+                 );
+             }
+             }
 
-            }
+
+
 
           },
           style: ElevatedButton.styleFrom(
